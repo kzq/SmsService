@@ -1,6 +1,6 @@
 require "base64"
-require './smsservice/services/base'
-require "./smsservice/results/infobip"
+require 'sms_service/services/base'
+require "sms_service/results/infobip"
 module SmsService::Service
   class Infobip < Base
     attr_reader :params

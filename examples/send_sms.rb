@@ -1,141 +1,95 @@
-config=SmsService.configure(
+# Configure Services
+#For Rails project you can create sms_services.rb file and place it into initializers directory.
+
+
+
+# MUST set default sms service provider to use, can have one of these three symbols i.e. :textmarketer, :bulksms, :infobip. You can change service anytime using the SmsService.configure method 
+
+# configure single service provider
+SmsService.configure(
+    :infobip=> {
+    :username=>"username",
+    :password=>"password",
+    :from=>"sender"
+    },
+    :service=>:infobip  
+)
+
+#configfure multiple service providers
+SmsService.configure(
   :textmarketer=> {
-    :username=>"39239",
-    :password=>"spayr",
-    :orig=>"FFCF"
+    :username=>"username",
+    :password=>"password",
+    :orig=>"sender"
   },
   :bulksms=> {
-    :username=>"kingston_st",
-    :password=>"DashKam55",
+    :username=>"username",
+    :password=>"password",
     :allow_concat_text_sms=>1,
     :concat_text_sms_max_parts=>3,
     :repliable=>0,
     :routing_group=>2
-    #:eapi_url=>"http://www.usa.bulksms.com:5567"
+    #:eapi_url=>"http://www.usa.bulksms.com:5567", if differet from default eapi 
   },
   :infobip=> {
-    :username=>"DBtech1",
-    :password=>"DAsh123!",
-    :from=>"DTTT"
+    :username=>"username",
+    :password=>"password",
+    :from=>"sender"
   },
-  #:service=>:textmarketer
-  #:service=>:bulksms   
-  :service=>:infobip  
+  :service=>:bulksms  
 )
-=begin
-config=SmsService.configure(
-    :infobip=> {
-    :username=>"DBtech1",
-    :password=>"DAsh123!",
-    :from=>"FFCFDT"
-    },
-    :service=>:infobip  
-)
-=end
-#puts config
-#puts "====1======"
-#config=SmsService.configure(:textmarketer=>{:username=>"in the kamran"})
-#puts config
-#puts "=====2====="
-#config=SmsService.configure do |config|
-#         config.service="my service"
-#        end  
-#puts config
-#puts "=====3====="
-#config=SmsService.config
-#config=SmsService.config[:default_service]
-#config=SmsService.config.default_service
-#=begin
-#c=SmsService::Configuration.instance
-#puts c.is_a?(SmsService::Configuration)
-#c.service
-#puts c.service
-#c.service=:textmarketer
-#puts "c.service=#{c.service} ,c.data=#{c.data}"
-#=end
-#c=SmsService::Configuration.option
-#c=SmsService::Configuration.service=:textmarketer
-#puts c
-#config=SmsService.config[SmsService.config[:default_service]]
-#puts config
-#send =SmsService.send()
-#send =SmsService.send({})
-#send =SmsService.send("ddf ghh")
-#########textmarketer
-=begin
-#results =SmsService.send("FFCF Job offer 123456","447877743313")
-#results=SmsService.send(["KU Job offer 123456","447877743313"],["KU Job offer 1234567","447459486342"])
-#results=SmsService.send({:message=>"I am single Hash",:to=>"447877743313"}) 
-#results=SmsService.send({:to=>"447877743313",:message=>"I am first hash"},{:message=>"I am second hash",:to=>"447459486342"}) 
-results.each do |result|
-  puts "=====#{result.message_id}=========="
-  puts "response=#{result.response}"
-  puts "status=#{result.status}"
-  puts "message_id=#{result.message_id}"
-  puts "credits_left=#{result.credits_left}"
-  puts "credits_used=#{result.credits_used}"
-end
-=end
-#########Bulksms
-#results =SmsService.send(["KU Job offer 123","447877743313"])
-#results =SmsService.send(["KU Job offer 123456","447877743313"],["KU Job offer 1234567","447459486342"])
-#results=SmsService.send({:message=>"I am single Hash",:to=>"447877743313"}) 
-#results=SmsService.send({:to=>"447877743313",:message=>"I am \nfirst \"l\" hash"},{:message=>"I am second hash",:to=>"447459486342"}) 
-#results.each do |result|
-#  puts "=====#{result.batch_id.to_s}=========="
-#  puts "response=#{result.response}"
-#  puts "status_code=#{result.status_code}"
-#  puts "status_description=#{result.status_description}"
-#  puts "batch_id=#{result.batch_id}"
-#end
-#############infobip
-#=begin
-results =SmsService.send(["KU Job offer 123","447877743313"])
-#results =SmsService.send(["KU Job offer 123456","447877743313,447459486342"])
-#results =SmsService.send(["KU Job offer 123456","447877743313,447459486342"],["KU Job offer 1234567","447459486342"])
-#results=SmsService.send({:message=>"I am single Hash",:to=>"447877743313"}) 
-#results=SmsService.send({:to=>"447877743313",:message=>"I am first hash"},{:message=>"I am second hash",:to=>"447459486342"}) 
 
-results.each do |result|
-  puts "=============start====================================================================="
-  puts "response===#{result.response}"
-  puts "============================"
-  puts "messages===#{result.messages}"
-  puts "============================"
-  puts "message===#{result.message}"
-  puts "============================"
-  puts "total_credits_used==#{result.total_credits_used}"
-  puts "============================"
-  puts "credits_used==#{result.credits_used}"
-  puts "============================"
-  puts "bulkid===#{result.bulkid}"
-  puts "============================"
-  puts "message_id===#{result.message_id}"
-  puts "==============end======================================================================="
-end
-#=end
-#send =SmsService.send(["ddf ghh","8899887,8899887"],["ddf ghh","8899887"]) 
-#send =SmsService.send({:message=>"adsd",:to=>"79898798"}) 
-#send =SmsService.send({:message=>"adsd",:to=>"79898798"},{:message=>"adsd",:to=>"79898798"}) 
-#puts send
-#[[1,'a'],[2,'b'],[3,'c']].map {|e| puts e.first}
-#puts [[1,'a'],[2,'b'],[3,'c']].map &:first
-#puts [[1,'a'],[2,'b'],[3,'c']].map &:inspect
-#str = c.class.to_s
-#puts str[str.rindex(':')+1..-1].gsub(/([a-z\d]+)([A-Z])/,'\1_\2').downcase.to_sym
-#args={:message => 'Hello, I hope you like my message!', :recipient => '44799123456'}
-#args=[{:message => 'Test Message', :recipient => "44342134131"}, {:message => "Another Msg", :recipient => "4441234354254"}]
-#msg = args.shift
-#puts msg
-#msg = args.shift
-#puts msg
-#args=['Hello, I hope you like my message!','Me'],['2','22']
-#puts args.size
-#msg = args.shift
-#puts msg.class
-#args=[["ddf ghh","8899887,8899887"],["ddfokghh","8899887"]]
-#msg = args.shift
-#puts msg
-#msg = args.shift
-#puts msg
+# Send SMS
 
+### Single message
+
+SmsService.send("Hello world!","44786544321")
+SmsService.send({:message=>"Hello world!",:to=>"44786544321"})
+
+### Single message to multiple recepients
+
+SmsService.send("Hello world!","44786544321,44787652309")
+
+#Multiple messages
+
+SmsService.send(["Hello world! to team A","44786544321"],["Hello world! to team A","44787652309"])
+SmsService.send({:to=>"44786544321",:message=>"Hello world! to team A"},{:message=>"Hello world! to team B",:to=>"44787652309"})
+
+
+### Textmarketer
+
+#set service to textmarketer if not set already or using different provider  
+SmsService.configure(:service=>:textmarketer)
+#send sms
+results=SmsService.send("Hello world!","44786544321")
+results.each do |result|
+  result.response
+  result.status
+  result.message_id
+  result.credits_left
+  result.credits_used
+end
+
+### Bulksms
+
+results =SmsService.send(["Hello world! to team A","44786544321"],["Hello world! to team A","44787652309"])
+results.each do |result|
+ result.response
+ result.status_code
+ result.status_description
+ result.batch_id
+end
+
+
+### Infobip
+
+results=SmsService.send({:to=>"44786544321",:message=>"I am first hash"},{:message=>"I am second hash",:to=>"44787652309,44787549510"}) 
+results.each do |result|
+  result.response
+  result.messages
+  result.message
+  result.total_credits_used
+  result.credits_used
+  result.bulkid
+  result.message_id
+end

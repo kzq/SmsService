@@ -1,5 +1,5 @@
-require './smsservice/services/base'
-require "./smsservice/results/textmarketer"
+require "sms_service/services/base"
+require "sms_service/results/textmarketer"
 module SmsService::Service
   class Textmarketer < Base
   	

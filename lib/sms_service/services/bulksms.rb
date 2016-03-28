@@ -1,5 +1,5 @@
-require './smsservice/services/base'
-require "./smsservice/results/bulksms"
+require 'sms_service/services/base'
+require "sms_service/results/bulksms"
 module SmsService::Service
   class Bulksms < Base
     

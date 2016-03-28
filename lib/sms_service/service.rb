@@ -8,7 +8,7 @@ module SmsService
   
     def get(name)
   	  if all_services.include?(name)
-  	    require "./smsservice/services/#{name.to_s}"
+  	    require "sms_service/services/#{name.to_s}"
   	    Service.const_get("#{name.capitalize}").new Configuration.instance.data[name]
   	  else
   	    valid_services=all_services.map(&:inspect).join(",")

@@ -1,5 +1,4 @@
 require 'singleton'
-require './hash_recursive_merge'
 module SmsService
   #
   # default parameters for sms service. It will be overridden by the 
