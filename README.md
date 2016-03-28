@@ -4,7 +4,7 @@ For Rails project you can create sms_services.rb file and place it into initiali
 
 ```sh
 # MUST set default sms service provider to use, can have one of these three symbols i.e. :textmarketer,
- :bulksms, :infobip. You can change service anytime using the SmsService.configure method 
+# :bulksms, :infobip. You can change service anytime using the SmsService.configure method 
 
 # configure single service provider
 SmsService.configure(
