@@ -1,40 +1,3 @@
-require './smsservice/configuration'
-require './smsservice/service'
-require './smsservice/services/message'
-module SmsService
-  ## TO DO
-  ## check sms args given and valis
-  ## create exception class
-  ##
-
-  #
-  # merge options into @data and if block given mege those options as well 
-  #
-  def self.configure(options = nil)
-   service=Configuration.instance
-   service.configure(options) unless options.nil?
-   yield service unless !block_given?
-   service.data
-  end	
-  #
-  # Read configuraion data
-  #
-  def self.config
-  	Configuration.instance.data
-  end	
-  #
-  # Send SMS
-  #
-  def self.send(*sms)
-  	service=SmsService::Service.get Configuration.service
-  	#service.blank? ? [] : service.send(args)
-  	#puts service.all_services
-  	#puts service.api_url
-  	#puts service.sms_url sms
-  	service.send(sms)
-  end
-end
-######################### END MODULE ######################################## 
 config=SmsService.configure(
   :textmarketer=> {
     :username=>"39239",
@@ -76,7 +39,7 @@ config=SmsService.configure(
 #puts "=====2====="
 #config=SmsService.configure do |config|
 #         config.service="my service"
-#        end	
+#        end  
 #puts config
 #puts "=====3====="
 #config=SmsService.config
@@ -127,11 +90,11 @@ end
 #end
 #############infobip
 #=begin
-#results =SmsService.send(["KU Job offer 123","447877743313"])
+results =SmsService.send(["KU Job offer 123","447877743313"])
 #results =SmsService.send(["KU Job offer 123456","447877743313,447459486342"])
 #results =SmsService.send(["KU Job offer 123456","447877743313,447459486342"],["KU Job offer 1234567","447459486342"])
 #results=SmsService.send({:message=>"I am single Hash",:to=>"447877743313"}) 
-results=SmsService.send({:to=>"447877743313",:message=>"I am first hash"},{:message=>"I am second hash",:to=>"447459486342"}) 
+#results=SmsService.send({:to=>"447877743313",:message=>"I am first hash"},{:message=>"I am second hash",:to=>"447459486342"}) 
 
 results.each do |result|
   puts "=============start====================================================================="
