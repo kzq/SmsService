@@ -3,7 +3,8 @@ For Rails project you can create sms_services.rb file and place it into initiali
 
 
 ```sh
-# MUST set default sms service provider to use, can have one of these three symbols i.e. :textmarketer, :bulksms, :infobip. You can change service anytime using the SmsService.configure method 
+# MUST set default sms service provider to use, can have one of these three symbols i.e. :textmarketer,
+ :bulksms, :infobip. You can change service anytime using the SmsService.configure method 
 
 # configure single service provider
 SmsService.configure(
@@ -53,7 +54,8 @@ SmsService.send("Hello world!","44786544321,44787652309")
 #Multiple messages
 ```sh
 SmsService.send(["Hello world! to team A","44786544321"],["Hello world! to team A","44787652309"])
-SmsService.send({:to=>"44786544321",:message=>"Hello world! to team A"},{:message=>"Hello world! to team B",:to=>"44787652309"})
+SmsService.send({:to=>"44786544321",:message=>"Hello world! to team A"},
+				{:message=>"Hello world! to team B",:to=>"44787652309"})
 ```
 
 ### Textmarketer
@@ -83,7 +85,8 @@ end
 
 ### Infobip
 ```sh
-results=SmsService.send({:to=>"44786544321",:message=>"I am first hash"},{:message=>"I am second hash",:to=>"44787652309,44787549510"}) 
+results=SmsService.send({:to=>"44786544321",:message=>"I am first hash"},
+						{:message=>"I am second hash",:to=>"44787652309,44787549510"}) 
 results.each do |result|
   result.response
   result.messages
