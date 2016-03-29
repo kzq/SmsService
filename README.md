@@ -1,3 +1,15 @@
+# SMS Service
+
+A ruby gem that enables you to send SMS using multiple vendors like Infobip, BulkSMS and Textmarketer. 
+
+# Installation
+```sh
+gem install sms_service
+```
+For rails add this to your gem file
+```sh
+gem 'sms_service'
+```
 # Configure Services
 For Rails project you can create sms_services.rb file and place it into initializers directory.
 

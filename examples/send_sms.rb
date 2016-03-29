@@ -1,3 +1,4 @@
+require 'sms_service'
 # Configure Services
 #For Rails project you can create sms_services.rb file and place it into initializers directory.
 
