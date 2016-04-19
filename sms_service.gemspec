@@ -13,6 +13,6 @@ Gem::Specification.new do |s|
   s.files    = Dir['CHANGELOG.md', 'LICENSE', 'README.md', 'examples/**/*', 'lib/**/*']
   s.require_paths = ["lib"]
   s.add_development_dependency  "rspec"
-  s.add_development_dependency  "factory_girl_rails"
+  s.spec.add_runtime_dependency "nokogiri"
   s.license     = 'MIT'
 end
