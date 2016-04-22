@@ -2,7 +2,12 @@ require 'net/http'
 require 'net/https'
 require 'uri'
 require 'json'
+begin
 require 'nokogiri'
+rescue LoadError => e
+  $stderr.puts "The nokogiri gem is not available. Please add it to your Gemfile and run bundle install"
+  raise e
+end
 module SmsService::Service
   
   class Base

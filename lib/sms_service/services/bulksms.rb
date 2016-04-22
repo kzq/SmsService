@@ -6,8 +6,8 @@ module SmsService::Service
     def initialize params
       @params=params
       self.class.set_api_url self.class.default_api
-      unless self.class.url_address == nil 
-        set_api_url url_address
+      unless self.class.url_address == nil
+        self.class.set_api_url self.class.url_address
         @params.delete :eapi_url
       end
     end
@@ -48,7 +48,7 @@ module SmsService::Service
     end
     
     def self.url_address
-      SmsService::Configuration.instance.data[:bulksms][:eapi_url]
+      SmsService::Configuration.instance.data[:bulksms][:eapi_url] 
     end
     
     def sms_url params

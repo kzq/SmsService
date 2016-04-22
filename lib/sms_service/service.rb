@@ -12,9 +12,7 @@ module SmsService
   	    Service.const_get("#{name.capitalize}").new Configuration.instance.data[name]
   	  else
   	    valid_services=all_services.map(&:inspect).join(",")
-  	    #raise ConfigurationError, "Please specify a valid service provider for SmsService " +
-        # "(#{name.inspect} is not one of: #{valid_services})."
-        puts "Please specify a valid service provider for SmsService (#{name.inspect} is not one of the #{valid_services})."
+  	    raise "Please specify a valid service provider for SmsService (#{name.inspect} is not one of the #{valid_services})."
   	  end
   	end	
   
